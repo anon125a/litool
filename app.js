@@ -1,11 +1,12 @@
 const libName = document.getElementById("lib-selection");
 const dataType = document.getElementById("data-selection");
-const offset = document.getElementById("offset");
-const editValue = document.getElementById("edit-to");
+let offset = [document.getElementById("offset0"),document.getElementById("offset1"),document.getElementById("offset2"),document.getElementById("offset3")];
+let editValue = [document.getElementById("editto0"),document.getElementById("editto1"),document.getElementById("editto2"),document.getElementById("editto3")];
 const genCPPBtn = document.getElementById("gen-cpp");
 const genLUABtn = document.getElementById("gen-lua");
 const genField = document.getElementById("gen-box");
 const body = document.getElementById("boddy");
+const mulOff = document.getElementById("m-off");
 
 let type;
 
@@ -26,6 +27,8 @@ const generateCPP = () => {
         PACKAGENAME *pnv = "com.vng.pubgmobile";
         PACKAGENAME *ptw = "com.rekoo.pubgm";
         PACKAGENAME *pin = "com.pubg.imobile";
+        PACKAGENAME *pcn = "com.meowos.messenger";
+        int pubgCN = getPID(pcn);
         int pubgGL = getPID(pgl);
         int pubgKR = getPID(pkr);
         int pubgVN = getPID(pnv);
@@ -53,8 +56,7 @@ const generateCPP = () => {
         BypassGameSafe();
         char mname[]="${libName.value}";
         long int libbase=get_module_base(ipid, mname);
-        long int by=libbase + ${offset.value};
-        WriteAddress_${type}(bm,by,${editValue.value});
+        ${manageOffEditcpp()}
         RevertBypassGameSafe();
         return 0;
     };`;
@@ -65,14 +67,48 @@ const generateLUA = () => {
     if(!checkDatas()) {
         alert("Fill All Requirement");
     } else {
-     window.innerWidth > 680 ? body.style.height = "100vh" : body.style.height = "fit-content";
+    body.style.height = "fit-content";
     genField.style.padding = "1rem 2rem";
     genField.innerText = `function setvalue(address,flags,value) local tt={} tt[1]={} tt[1].address=address tt[1].flags=flags tt[1].value=value gg.setValues(tt) end .
     an=gg.getRangesList ('${libName.value}') [1] .start
-    on=${offset.value}
-    setvalue(an+on,${dataType.value},${editValue.value})`;
+    ${manageOffEditlua()}`;
     }
 };
+const checkMatch = () => {
+    let i = 0, lengthOff = 0,lengthEdit = 0;
+    for(i=0; i<4 ; i++) {
+        offset[i].value === "" ? console.log(" ") : lengthOff++;
+        editValue[i].value === "" ? console.log(" ") : lengthEdit++;
+    }
+    if(lengthOff === lengthEdit) { 
+        return lengthOff;
+     } else {
+        alert("Number of input of offset and editvalue differs!!");
+        location.reload();
+    }
+}
+
+const manageOffEditlua = () => {
+    let toreturn = " ";
+    let length = checkMatch();
+    for(i=0; i<length ; i++) {
+        toreturn += `\n on${i}=${offset[i].value}
+        setvalue(an+on${i},${dataType.value},${editValue[i].value})`;
+    }
+    return toreturn;
+}
+
+const manageOffEditcpp = () => {
+    let toreturn = " ";
+    let length = checkMatch();
+    for(i=0; i<length ; i++) {
+        toreturn += `\nlong int by${[i]}=libbase + ${offset[i].value};
+        WriteAddress_${type}(bm,by${[i]},${editValue[i].value});`
+    }
+    return toreturn;
+}
+
+
 
 const checkType = () => {
     if(dataType.value === "16") {
@@ -81,16 +117,41 @@ const checkType = () => {
         type = "DWORD";
     } else if(dataType.value === "1") {
         type = "BYTE";
+    } else if(dataType.value === "32") {
+        type = "QWORD";
     }
 }
 
 const checkDatas = () => {
-    if(offset.value === "" || editValue.value === "") {
+    if(offset[0].value === "" || editValue.value === "") {
         return false;
     } else {
         return true;
     }
 }
 
+const displayManager = (array, type) => {
+    let i = 0;
+    for(const element of array) {
+        i === 0 ? element.style.display = "block" : element.style.display = type;
+        element.value = "";
+        i++;
+    }
+}
+
+const multipleOffset = () => {
+    if(mulOff.textContent === "Multiple Offsets") {
+        mulOff.textContent = "Single Offset";
+        displayManager(offset,"block");
+        displayManager(editValue,"block");
+    } else {
+        mulOff.textContent = "Multiple Offsets";
+        displayManager(offset,"none");
+        displayManager(editValue,"none");
+    }
+    
+}
+
 genCPPBtn.addEventListener('click', generateCPP);
 genLUABtn.addEventListener('click', generateLUA);
+mulOff.addEventListener('click', multipleOffset);

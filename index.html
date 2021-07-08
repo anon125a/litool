@@ -27,25 +27,35 @@
         </div>
         <div class="enter-off">
             <p>Enter Offset</p>
-            <input type="text" id="offset">
+            <input type="text" id="offset0">
+            <input type="text" id="offset1">
+            <input type="text" id="offset2">
+            <input type="text" id="offset3">
         </div>
         <div class="sel-type">
             <p>Select Type</p>
             <select name="data-type" id="data-selection">
                 <option value="16">Float</option>
                 <option value="4">Dword</option>
+                <option value="32">Qword</option>
                 <option value="1">Byte</option>
             </select>
         </div>
         <div class="enter-ev">
             <p>Edit Value</p>
-            <input type="text" id="edit-to" name="sfss">
+            <input type="text" id="editto0" name="sfss">
+            <input type="text" id="editto1" name="sfss">
+            <input type="text" id="editto2" name="sfss">
+            <input type="text" id="editto3" name="sfss">
         </div>
         </div>
         <div class="btns">
             <button id="gen-cpp">Generate CPP</button>
             <button id="gen-lua">Generate LUA</button>
         </div>
+        <div class="m-off-container">
+        <button id="m-off">Multiple Offsets</button>
+    </div>
         <div class="generation">
             <div id="gen-box"></div>
         </div>
