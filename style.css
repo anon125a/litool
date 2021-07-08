@@ -1,0 +1,170 @@
+*{
+    padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    background: rgb(102, 202, 172);
+}
+.container{
+    width: 30%;
+    font-family: sans-serif;
+    color: rgb(48, 44, 44);
+    display: flex;
+    justify-content: space-between;
+}
+.body-container{
+    width: 80%;
+    margin: auto auto;
+    background: #E6DDC6;
+    height: 100vh;
+    padding: 1rem;
+}
+
+#link{
+    color: rgb(48, 44, 44);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/*-------------INPUT-SECTION----------------*/
+.selection-section{
+    padding: 2rem 3rem;
+    display: grid;
+    grid-template-areas: 
+    "one two"
+    "three four"
+    ;
+    grid-gap: 2rem 3rem;
+    justify-content: center;
+}
+
+.enter-off,.enter-ev{
+    justify-self: end;
+}
+.selection-section  p{
+    font-size: 1.5rem;
+    padding: .5rem 0;
+}
+
+#lib-selection,#data-selection,input{
+    height: 2rem;
+    width: 20rem;
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid red;
+    background: inherit;
+    font-size: 1.2rem;
+}
+#lib-selection:focus,#data-selection:focus,input:focus{
+    outline: none;
+    border-bottom: 1px solid rgb(45, 155, 155);
+    transition: all .4s ease-in-out;
+}
+
+option{
+    background: rgb(45, 155, 155);
+}
+
+/*-----------GENERATION-SECTION------------------*/
+.btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+button{
+    cursor: pointer;
+    margin: 0 2rem;
+    height: 2.8rem;
+    width: 11rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background:rgb(45, 155, 155);
+    transition: all .4s ease-in-out;
+}
+button:hover{
+    color: white;
+}
+
+#gen-box{
+    margin: 2rem auto;
+    /* white-space: pre; */
+    width: 80%;
+    background: rgb(206, 207, 207);
+}
+
+@media (max-width: 680px) {
+    .container{
+        width: 60%;
+        font-size: .8rem;
+        font-family: sans-serif;
+        justify-content: space-between;
+    }
+    #link{
+        font-size: .94rem;
+    }
+
+    .body-container{
+        width: 100%;
+        }
+    .selection-section{
+        grid-template-areas: 
+        "one"
+        "two"
+        "three"
+        "four"
+        ;
+    }
+    #lib-selection,#data-selection,input{
+        height: 2rem;
+        width: 10rem;
+    }
+    .selection-section  p{
+        font-size: 1.2rem;
+    }
+
+    .btns{
+        display: flex;
+        justify-content: space-between;
+    }
+    button{
+        font-weight: 600;
+        font-size: 1.2rem;
+        width: 9.4rem;
+        padding: 0.2rem;
+        margin: 0 0.1rem;
+    }
+    #gen-box{
+        width: 90%;
+    }
+} 
+@media (max-width: 980px) {
+    #lib-selection,#data-selection,input{
+        width: 15rem;
+    }
+}
+@media (max-width: 790px) {
+    .selection-section{
+        width: 80%;
+        margin: auto auto;
+        grid-template-areas: 
+        "one"
+        "two"
+        "three"
+        "four"
+        ;
+    }
+    .enter-off,.enter-ev{
+        justify-self: start;
+    }
+}

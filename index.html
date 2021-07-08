@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HEY</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h3>Cymkik0</h3>
+                <a href="https://www.mediafire.com/file/epve6qf04lrkf5r/LibBaseMemTool.h/file" id="link" target="b_blank">Download Header</a>
+        </header>
+        <div class="body-container" id="boddy">
+        <div class="selection-section">
+            <div class="sel-lib">
+            <p>Select lib</p>
+            <select name="lib" id="lib-selection">
+                <option value="libUE4.so">libUE4.so</option>
+                <option value="libtersafe.so">libtersafe.so</option>
+                <option value="libgcloud.so">libgcloud.so</option>
+            </select>
+        </div>
+        <div class="enter-off">
+            <p>Enter Offset</p>
+            <input type="text" id="offset">
+        </div>
+        <div class="sel-type">
+            <p>Select Type</p>
+            <select name="data-type" id="data-selection">
+                <option value="16">Float</option>
+                <option value="4">Dword</option>
+                <option value="1">Byte</option>
+            </select>
+        </div>
+        <div class="enter-ev">
+            <p>Edit Value</p>
+            <input type="text" id="edit-to" name="sfss">
+        </div>
+        </div>
+        <div class="btns">
+            <button id="gen-cpp">Generate CPP</button>
+            <button id="gen-lua">Generate LUA</button>
+        </div>
+        <div class="generation">
+            <div id="gen-box"></div>
+        </div>
+    </div>
+    </body>
+</html>
