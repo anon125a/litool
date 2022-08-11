@@ -27,7 +27,6 @@ const generateCPP = () => {
         PACKAGENAME *pnv = "com.vng.pubgmobile";
         PACKAGENAME *ptw = "com.rekoo.pubgm";
         PACKAGENAME *pin = "com.pubg.imobile";
-        PACKAGENAME *pcn = "com.meowos.messenger";
         int pubgCN = getPID(pcn);
         int pubgGL = getPID(pgl);
         int pubgKR = getPID(pkr);
